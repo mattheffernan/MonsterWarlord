@@ -1,9 +1,9 @@
-﻿using System;
-using System.Web.Routing;
-namespace NavigationRoutes
+﻿using System.Web.Routing;
+
+namespace Web.NavigationRoutes
 {
     public interface INavigationRouteFilter
     {
-        bool  ShouldRemove(Route navigationRoutes);
+        bool ShouldRemove(Route navigationRoutes);
     }
 }

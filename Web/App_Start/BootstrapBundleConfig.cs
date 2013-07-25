@@ -1,8 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace BootstrapSupport
+namespace Web.App_Start
 {
     public class BootstrapBundleConfig
     {
@@ -15,14 +13,14 @@ namespace BootstrapSupport
                 "~/Scripts/jquery.validate.js",
                 "~/scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/jquery.validate.unobtrusive-custom-for-bootstrap.js"
-                ));
+                            ));
 
             bundles.Add(new StyleBundle("~/content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/body.css",
                 "~/Content/bootstrap-responsive.css",
                 "~/Content/bootstrap-mvc-validation.css"
-                ));
+                            ));
         }
     }
 }

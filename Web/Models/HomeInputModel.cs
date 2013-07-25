@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-namespace Models
+
+namespace Web.Models
 {
     public class HomeInputModel
     {
         public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -27,24 +27,24 @@ namespace Models
         public static List<HomeInputModel> CreateHomeInputModels()
         {
             return new List<HomeInputModel>
-                       {
-                           new HomeInputModel
-                               {
-                                   Id = 1,
-                                   Blog = "http://foobar.com",
-                                   Name = "asdf",
-                                   Password = "asdfsd",
-                                   StartDate = DateTime.Now.AddYears(1)
-                               },
-                           new HomeInputModel
-                               {
-                                   Id = 2,
-                                   Blog = "http://foobar.com",
-                                   Name = "fffff",
-                                   Password = "dddddddasdfsd",
-                                   StartDate = DateTime.Now.AddYears(2)
-                               },
-                       };
+                {
+                    new HomeInputModel
+                        {
+                            Id = 1,
+                            Blog = "http://foobar.com",
+                            Name = "asdf",
+                            Password = "asdfsd",
+                            StartDate = DateTime.Now.AddYears(1)
+                        },
+                    new HomeInputModel
+                        {
+                            Id = 2,
+                            Blog = "http://foobar.com",
+                            Name = "fffff",
+                            Password = "dddddddasdfsd",
+                            StartDate = DateTime.Now.AddYears(2)
+                        },
+                };
         }
     }
 

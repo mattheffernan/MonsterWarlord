@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using BootstrapMvcSample.Controllers;
-using NavigationRoutes;
+﻿using System.Web.Routing;
+using Web.Controllers;
+using Web.NavigationRoutes;
 
-namespace BootstrapMvcSample
+namespace Web.App_Start
 {
     public class ExampleLayoutsRouteConfig
     {

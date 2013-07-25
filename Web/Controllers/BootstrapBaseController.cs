@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
-using BootstrapSupport;
+using Web.BootstrapSupport;
 
-namespace BootstrapMvcSample.Controllers
+namespace Web.Controllers
 {
-    public class BootstrapBaseController: Controller
+    public class BootstrapBaseController : Controller
     {
         public void Attention(string message)
         {

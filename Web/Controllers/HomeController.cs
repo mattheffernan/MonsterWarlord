@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Models;
+using Web.Models;
 
-namespace BootstrapMvcSample.Controllers
+namespace Web.Controllers
 {
     public class HomeController : BootstrapBaseController
     {
-        private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
+        private static readonly List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
+
         public ActionResult Index()
         {
-           
-            var homeInputModels = _models;                                      
+            List<HomeInputModel> homeInputModels = _models;
             return View(homeInputModels);
         }
 
@@ -22,7 +20,7 @@ namespace BootstrapMvcSample.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Id = _models.Count==0?1:_models.Select(x => x.Id).Max() + 1;
+                model.Id = _models.Count == 0 ? 1 : _models.Select(x => x.Id).Max() + 1;
                 _models.Add(model);
                 Success("Your information was saved!");
                 return RedirectToAction("Index");
@@ -40,21 +38,23 @@ namespace BootstrapMvcSample.Controllers
         {
             _models.Remove(_models.Get(id));
             Information("Your widget was deleted");
-            if(_models.Count==0)
+            if (_models.Count == 0)
             {
                 Attention("You have deleted all the models! Create a new one to continue the demo.");
             }
             return RedirectToAction("index");
         }
+
         public ActionResult Edit(int id)
         {
-            var model = _models.Get(id);
+            HomeInputModel model = _models.Get(id);
             return View("Create", model);
         }
-        [HttpPost]        
-        public ActionResult Edit(HomeInputModel model,int id)
+
+        [HttpPost]
+        public ActionResult Edit(HomeInputModel model, int id)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _models.Remove(_models.Get(id));
                 model.Id = id;
@@ -65,11 +65,10 @@ namespace BootstrapMvcSample.Controllers
             return View("Create", model);
         }
 
-		public ActionResult Details(int id)
+        public ActionResult Details(int id)
         {
-            var model = _models.Get(id);
+            HomeInputModel model = _models.Get(id);
             return View(model);
         }
-
     }
 }

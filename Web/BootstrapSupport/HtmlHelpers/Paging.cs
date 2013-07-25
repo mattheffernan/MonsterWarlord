@@ -23,15 +23,15 @@ public ActionResult Index(int page = 1)
 }
 */
 
-namespace BootstrapSupport.HtmlHelpers
+namespace Web.BootstrapSupport.HtmlHelpers
 {
     public static class PaginiationHelperExtensions
     {
         /// <summary>
-        /// Renders a bootstrap standard pagination bar
+        ///     Renders a bootstrap standard pagination bar
         /// </summary>
         /// <remarks>
-        /// http://twitter.github.com/bootstrap/components.html#pagination
+        ///     http://twitter.github.com/bootstrap/components.html#pagination
         /// </remarks>
         /// <param name="helper">The html helper</param>
         /// <param name="currentPage">Zero-based page number of the page on which the pagination bar should be rendered</param>
@@ -42,9 +42,9 @@ namespace BootstrapSupport.HtmlHelpers
         /// <param name="additionalPagerCssClass">Additional classes for the navigation div (e.g. "pagination-right pagination-mini")</param>
         /// <returns></returns>
         public static MvcHtmlString Pager(this HtmlHelper helper,
-            int currentPage, int totalPages, 
-            Func<int, string> pageUrl, 
-            string additionalPagerCssClass = "")
+                                          int currentPage, int totalPages,
+                                          Func<int, string> pageUrl,
+                                          string additionalPagerCssClass = "")
         {
             if (totalPages <= 1)
                 return MvcHtmlString.Empty;
@@ -55,7 +55,7 @@ namespace BootstrapSupport.HtmlHelpers
 
             var ul = new TagBuilder("ul");
 
-            for (var i = 1; i < totalPages + 1; i++)
+            for (int i = 1; i < totalPages + 1; i++)
             {
                 var li = new TagBuilder("li");
                 if (i == (currentPage + 1))
@@ -66,7 +66,7 @@ namespace BootstrapSupport.HtmlHelpers
                 a.SetInnerText(i.ToString());
 
                 li.InnerHtml = a.ToString();
-                
+
                 ul.InnerHtml += li;
             }
 
@@ -93,20 +93,22 @@ namespace BootstrapSupport.HtmlHelpers
     public class PagedList<T> : List<T>, IPagedList<T>
     {
         public PagedList(IEnumerable<T> source, int pageIndex, int pageSize) :
-            this(source.GetPage(pageIndex, pageSize), pageIndex, pageSize, source.Count()) { }
+            this(source.GetPage(pageIndex, pageSize), pageIndex, pageSize, source.Count())
+        {
+        }
 
         public PagedList(IEnumerable<T> source, int pageIndex, int pageSize, int totalCount)
         {
-            this.TotalCount = totalCount;
-            this.TotalPages = totalCount / pageSize;
+            TotalCount = totalCount;
+            TotalPages = totalCount/pageSize;
 
-            if (totalCount % pageSize > 0)
+            if (totalCount%pageSize > 0)
                 TotalPages++;
 
-            this.PageSize = pageSize;
-            this.PageIndex = pageIndex;
+            PageSize = pageSize;
+            PageIndex = pageIndex;
 
-            this.AddRange(source.ToList());
+            AddRange(source.ToList());
         }
 
         public int PageIndex { get; private set; }
@@ -114,8 +116,15 @@ namespace BootstrapSupport.HtmlHelpers
         public int TotalCount { get; private set; }
         public int TotalPages { get; private set; }
 
-        public bool HasPreviousPage { get { return (PageIndex > 0); } }
-        public bool HasNextPage { get { return (PageIndex + 1 < TotalPages); } }
+        public bool HasPreviousPage
+        {
+            get { return (PageIndex > 0); }
+        }
+
+        public bool HasNextPage
+        {
+            get { return (PageIndex + 1 < TotalPages); }
+        }
     }
 
     public static class PagingExtensions
@@ -129,7 +138,7 @@ namespace BootstrapSupport.HtmlHelpers
         {
             return source.Skip(pageIndex*pageSize).Take(pageSize);
         }
-        
+
         // You can create your own paging extension that delegates to your
         // persistence layer such as NHibernate or Entity Framework.
         // This is an example how an `IPagedList<T>` can be created from 
@@ -152,5 +161,5 @@ namespace BootstrapSupport.HtmlHelpers
             return list;
         }
         */
-    }   
+    }
 }
