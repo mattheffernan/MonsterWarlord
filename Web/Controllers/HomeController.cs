@@ -7,6 +7,11 @@ namespace Web.Controllers
 {
     public class HomeController : BootstrapBaseController
     {
+        public HomeController(IList<int> list)
+        {
+            var a = list;
+        }
+
         private static readonly List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
 
         public ActionResult Index()

@@ -20,6 +20,7 @@ namespace Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BootstrapBundleConfig.RegisterBundles(BundleTable.Bundles);
             ExampleLayoutsRouteConfig.RegisterRoutes(RouteTable.Routes);
+            ContainerConfig.RegisterContainer(GlobalConfiguration.Configuration);
         }
     }
 }
