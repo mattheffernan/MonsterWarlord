@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Data.Entities;
+using SharpRepository.Repository;
 using Web.Models;
 
 namespace Web.Controllers
 {
     public class HomeController : BootstrapBaseController
     {
-        public HomeController(IList<int> list)
+        public HomeController(IRepository<User> users)
         {
-            var a = list;
+            users.FirstOrDefault();
         }
 
         private static readonly List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Data.Context;
+using SharpRepository.Ef5Repository;
+using SharpRepository.Repository;
 
 namespace Web.App_Start
 {
@@ -21,7 +22,8 @@ namespace Web.App_Start
 
             // Register API controller dependencies per request.
 
-            builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>));
+            builder.RegisterGeneric(typeof(Ef5Repository<>)).As(typeof(IRepository<>));
+            builder.RegisterType<MonsterWarlordContext>().As<DbContext>();
             var container = builder.Build();
 
             // Set the dependency resolver implementation.
