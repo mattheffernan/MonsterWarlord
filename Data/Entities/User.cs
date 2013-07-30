@@ -6,11 +6,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Data.Entities
 {
-    public class Entity
-    {
-    
-    }
-
     public class User : Entity
     {
         [Key]

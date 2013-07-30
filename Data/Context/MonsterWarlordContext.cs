@@ -4,17 +4,14 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
+using System.Web.Security;
 using Data.Entities;
+using Domain.User;
 
 namespace Data.Context
 {
     public class MonsterWarlordContext : DbContext
     {
-        public MonsterWarlordContext() : base("MonsterWarlordContext")
-        {
-            
-        }
-        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -50,18 +47,31 @@ namespace Data.Context
 
         protected override void Seed(MonsterWarlordContext context)
         {
-            context.Set<User>().Add(new User()
-                {
-                    UserId = Guid.NewGuid(),
-                    Username = "Admin",
-                    IsApproved = true,
-                    
-                });
+            context.Set<User>().Add(CreateAccount("admin", "password1", false));
         }
 
 
+        public User CreateAccount(string userName, string hashedPassword, bool requireConfirmationToken)
+        {
+            var NewUser = new User
+            {
+                UserId = Guid.NewGuid(),
+                Username = userName,
+                Password = hashedPassword,
+                IsApproved = !requireConfirmationToken,
+                Email = string.Empty,
+                CreateDate = DateTime.UtcNow,
+                LastPasswordChangedDate = DateTime.UtcNow,
+                PasswordFailuresSinceLastSuccess = 0,
+                LastLoginDate = DateTime.UtcNow,
+                LastActivityDate = DateTime.UtcNow,
+                LastLockoutDate = DateTime.UtcNow,
+                IsLockedOut = false,
+                LastPasswordFailureDate = DateTime.UtcNow,
+                ConfirmationToken = string.Empty
+            };
 
-
-
+            return NewUser;
+        }
     }
 }

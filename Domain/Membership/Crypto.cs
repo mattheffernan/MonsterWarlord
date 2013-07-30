@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
+namespace Domain.User
+{
     public static class Crypto
     {
         private const int TokenSizeInBytes = 16;
@@ -165,3 +167,4 @@ using System.Security.Cryptography;
             return areSame;
         }
     }
+}

@@ -5,7 +5,10 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Data.Context;
 using Data.Entities;
+using Domain.User;
+using SharpRepository.Ef5Repository;
 using SharpRepository.Repository;
 
 namespace Web.Membership
@@ -15,7 +18,7 @@ namespace Web.Membership
         private IRepository<User> _userRepository;
         public IRepository<User> UserRepository
         {
-            get { return _userRepository ?? (_userRepository = DependencyResolver.Current.GetService<IRepository<User>>()); }
+            get { return _userRepository ?? (_userRepository = new Ef5Repository<User>(new MonsterWarlordContext())); }
             set { _userRepository = value; }
         }
 
