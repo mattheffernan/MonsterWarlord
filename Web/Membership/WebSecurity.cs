@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Routing;
 using System.Web.Security;
-using Data.Entities;
+using Domain.Entities;
 using SharpRepository.Repository;
 
 namespace Web.Membership

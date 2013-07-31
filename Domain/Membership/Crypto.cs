@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-namespace Domain.User
+namespace Domain.Membership
 {
     public static class Crypto
     {

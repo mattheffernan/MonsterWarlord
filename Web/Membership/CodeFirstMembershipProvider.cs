@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Security;
 using Data.Context;
-using Data.Entities;
-using Domain.User;
+using Domain.Entities;
+using Domain.Membership;
 using SharpRepository.Ef5Repository;
 using SharpRepository.Repository;
 

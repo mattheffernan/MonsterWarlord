@@ -1,4 +1,4 @@
-﻿namespace Data.Entities
+﻿namespace Domain.Entities
 {
     public class Entity
     {

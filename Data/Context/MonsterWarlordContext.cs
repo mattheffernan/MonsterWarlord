@@ -4,9 +4,8 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
-using System.Web.Security;
-using Data.Entities;
-using Domain.User;
+using Domain.Entities;
+using Domain.Membership;
 
 namespace Data.Context
 {
@@ -50,9 +49,14 @@ namespace Data.Context
             context.Set<User>().Add(CreateAccount("admin", "password1", false));
         }
 
+        #region seedMethods
 
-        public User CreateAccount(string userName, string hashedPassword, bool requireConfirmationToken)
+        public User CreateAccount(string userName, string password, bool requireConfirmationToken)
         {
+            string hashedPassword = Crypto.HashPassword(password);
+
+            string token = string.Empty;
+
             var NewUser = new User
             {
                 UserId = Guid.NewGuid(),
@@ -68,10 +72,11 @@ namespace Data.Context
                 LastLockoutDate = DateTime.UtcNow,
                 IsLockedOut = false,
                 LastPasswordFailureDate = DateTime.UtcNow,
-                ConfirmationToken = string.Empty
+                ConfirmationToken = token
             };
 
             return NewUser;
         }
+        #endregion
     }
 }

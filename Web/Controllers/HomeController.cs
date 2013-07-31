@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Data.Entities;
+using Domain.Entities;
 using SharpRepository.Repository;
 using Web.Models;
 
